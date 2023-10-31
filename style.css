@@ -3,28 +3,43 @@
     src: url(Norse-Bold.otf);
 }
 
-html, body {
+:root {
+    --content-width: 900px;
+    --content-padding: 64px;
+
+    --sidebar-width: max(400px, 25%);
+}
+
+html,
+body {
     /* Boxing */
     padding: 0px;
     margin: 0px;
 
     /* Fonts */
     font-family: Arial, Helvetica, sans-serif;
+
+    /* Styling */
+
+    background-color: lightgray;
 }
 
-.container {
+body > .container {
     display: flex;
+    height: 100vh;
 }
 
 .side-bar {
     flex-grow: 0;
+    flex-shrink: 0;
     /* Size */
     height: 100vh;
-    width: max(400px,25%);
+    width: var(--sidebar-width);
     /* Background */
+    background-color: gray;
     background-image: url(halie-west-25xggax4bSA-unsplash.jpg);
     background-size: cover;
-    background-color: bisque;
+
     /* Positioning */
     position: relative;
 }
@@ -52,7 +67,7 @@ html, body {
     width: auto;
 }
 
-#title > div {
+#title>div {
     /* Font */
     font-family: "Norse Bold";
     font-size: 84px;
@@ -76,6 +91,81 @@ html, body {
 
 .content {
     flex: 1;
+    box-sizing: border-box;
     height: 100vh;
-    background-color: gray;
+    background-color: white;
+    padding: var(--content-padding);
+}
+
+.text {
+    width: min(100%, var(--content-width));
+    margin: 80px 0px;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+form > .container {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    width: min(100%, var(--content-width));
+}
+
+form > .container::after {
+    content: "";
+    background: linear-gradient(to bottom, rgba(148, 147, 147, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    position: absolute;
+    width: calc(100vw - var(--sidebar-width));
+    height: 6px;
+    top: 100%;
+    left: calc(-1 * var(--content-padding));
+}
+
+.form-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+input {
+    width: 200px;
+}
+
+label {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: rgb(92, 92, 92);
+}
+
+form > button {
+    margin: 32px 0px;
+    padding: 8px 32px;
+    border-radius: 8px;
+    border: 0;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(45, 100, 45);
+    
+}
+
+form > button:hover {
+    background-color: rgb(53, 121, 53);
+}
+
+form >button:active {
+    background-color: rgb(35, 78, 35);
+}
+
+form + div > a {
+    color: rgb(45, 100, 45);
+    text-decoration: none;
+    font-weight: bold;
 }
